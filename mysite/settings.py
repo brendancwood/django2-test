@@ -64,8 +64,7 @@ DATABASES = {
         'NAME': 'myfirstdatabase',
         'USER': 'brendancwood',
         'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'HOST': 'postgres://bxvsqupismqiwn:8qGPoEK5YLL-qraeIdwiHYnvh4@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6rkren08cgf7p',
     }
 }
 
