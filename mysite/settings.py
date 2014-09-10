@@ -10,9 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -64,9 +64,11 @@ DATABASES = {
         'NAME': 'myfirstdatabase',
         'USER': 'brendancwood',
         'PASSWORD': 'mypassword',
-        'HOST': 'postgres://bxvsqupismqiwn:8qGPoEK5YLL-qraeIdwiHYnvh4@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6rkren08cgf7p',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+#postgres://bxvsqupismqiwn:8qGPoEK5YLL-qraeIdwiHYnvh4@ec2-54-225-101-199.compute-1.amazonaws.com:5432/d6rkren08cgf7p
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -85,4 +87,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
